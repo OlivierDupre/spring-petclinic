@@ -27,7 +27,7 @@ pipeline {
 
                 } // withMaven will discover the generated Maven artifacts, JUnit reports and FindBugs reports
 
-                stash includes: 'target/\*.jar', name: 'binary'
+                stash includes: 'target/*.jar', name: 'binary'
             }
         }
 
