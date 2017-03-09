@@ -23,7 +23,7 @@ pipeline {
                     // ,mavenLocalRepo: '.repository'
                     ) {
                         // Run the maven build
-                    sh "mvn -B clean install"
+                    sh "mvn -B clean install -Dmaven.test.skip=true"
 
                 } // withMaven will discover the generated Maven artifacts, JUnit reports and FindBugs reports
 
@@ -128,7 +128,7 @@ pipeline {
         // Display tests results
         stage ('Deploy'){
             agent{
-                label 'deploy'
+                label 'docker'
             }
 
             steps {
