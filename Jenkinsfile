@@ -121,16 +121,7 @@ pipeline {
 
                 sh ("docker build -t toulouse-jam/spring-petclinic:${env.BUILD_NUMBER} .")
                 // docker.build("toulouseJam/spring-petclinic:${env.BUILD_NUMBER}")
-            }
-        }
 
-        // Display tests results
-        stage ('Deploy'){
-            agent{
-                label 'docker'
-            }
-
-            steps {
                 echo "Deploying..."
                 sleep(time: 2, unit: 'SECONDS')
                 echo "Removing docker image"
