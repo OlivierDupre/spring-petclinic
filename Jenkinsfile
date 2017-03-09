@@ -26,6 +26,8 @@ pipeline {
                     sh "mvn -B clean install"
 
                 } // withMaven will discover the generated Maven artifacts, JUnit reports and FindBugs reports
+
+                stash includes: 'target/\*.jar', name: 'binary'
             }
         }
 
@@ -66,6 +68,14 @@ pipeline {
                         }
                     }
                 )
+            }
+        }
+
+        // Unstash'....
+        stage ('Staging'){
+            steps{
+                unstash 'binary'
+                sh 'ls -alh target/'
             }
         }
 
