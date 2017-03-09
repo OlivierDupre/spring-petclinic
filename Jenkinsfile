@@ -77,6 +77,8 @@ pipeline {
                 dir("target"){
                     deleteDir();
                 }
+
+                sh "ls -alh"
             }
         }
 
