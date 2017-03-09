@@ -119,8 +119,8 @@ pipeline {
                 unstash 'binary'
                 sh 'ls -alh target/'
 
-                // sh ("docker build -t toulouse-jam/spring-petclinic:${env.BUILD_NUMBER} .")
-                docker.build("toulouse-jam/spring-petclinic:${env.BUILD_NUMBER}")
+                sh ("docker build -t toulouse-jam/spring-petclinic:${env.BUILD_NUMBER} .")
+                //docker.build("toulouse-jam/spring-petclinic:${env.BUILD_NUMBER}")
             }
         }
 
@@ -134,7 +134,7 @@ pipeline {
                 echo "Deploying..."
                 sleep(time: 2, unit: 'SECONDS')
                 echo "Removing docker image"
-                sh ("docker rmi -f toulouseJam/spring-petclinic:${env.BUILD_NUMBER}")
+                sh ("docker rmi -f toulouse-jam/spring-petclinic:${env.BUILD_NUMBER}")
             }
         }
     }
