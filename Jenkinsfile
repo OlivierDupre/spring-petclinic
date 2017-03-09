@@ -97,6 +97,21 @@ pipeline {
             }
         }
 
+        // Create docker image....
+        stage ('Docker build'){
+            steps{
+                dir("target"){
+                    deleteDir();
+                }
+
+                sh "ls -alh" 
+                unstash 'binary'
+                sh 'ls -alh target/'
+
+                docker.build("toulouseJam/spring-petclinic:${env.BUILD_NUMBER}")
+            }
+        }
+
         // Display tests results
         stage ('Deploy'){
             agent{
