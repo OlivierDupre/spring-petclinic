@@ -73,6 +73,10 @@ pipeline {
 
         // Clearing workspace....
         stage ('Clearing'){
+            agent{
+                label 'deploy'
+            }
+
             steps{
                 dir("target"){
                     deleteDir();
@@ -84,6 +88,10 @@ pipeline {
 
         // Unstash'....
         stage ('Staging'){
+            agent{
+                label 'deploy'
+            }
+
             steps{
                 unstash 'binary'
                 sh 'ls -alh target/'
@@ -99,6 +107,10 @@ pipeline {
 
         // Create docker image....
         stage ('Docker build'){
+            agent{
+                label 'docker'
+            }
+
             steps{
                 dir("target"){
                     deleteDir();
