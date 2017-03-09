@@ -108,7 +108,8 @@ pipeline {
                 unstash 'binary'
                 sh 'ls -alh target/'
 
-                docker.build("toulouseJam/spring-petclinic:${env.BUILD_NUMBER}")
+                sh ("docker build -t toulouseJam/spring-petclinic:${env.BUILD_NUMBER} .")
+                // docker.build("toulouseJam/spring-petclinic:${env.BUILD_NUMBER}")
             }
         }
 
