@@ -5,14 +5,6 @@
  * Le nom des agents auto-provisionnés est défini dans la configuration du plugin digitalOcean.
  */
 pipeline {
-    agent{
-        label 'build'
-    }
-
-    tools{
-        docker 'docker'
-    }
-
     agent any
 
     stages {
