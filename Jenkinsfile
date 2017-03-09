@@ -1,6 +1,6 @@
 /**
  * Created by odupre on 09/03/17.
- * 
+ *
  * IMPORTANT :
  * Le nom des agents auto-provisionnés est défini dans la configuration du plugin digitalOcean.
  */
@@ -48,23 +48,23 @@ pipeline {
                 parallel(
                     "Chrome": {
                         node(label: 'agent0') {
-                            echo "Chrome running" 
+                            echo "Chrome running"
                             sleep(time: 300, unit: 'MILLISECONDS')
-                            echo "Chrome ran" 
+                            echo "Chrome ran"
                         }
                     },
                     "Firefox": {
                         node(label: 'agent1') {
-                            echo "Firefox poney roxing" 
+                            echo "Firefox poney roxing"
                             sleep(time: 400, unit: 'NANOSECONDS')
-                            echo "Firefox poney roxed" 
+                            echo "Firefox poney roxed"
                         }
                     },
                     "Edge": {
                         node(label: 'agent2') {
-                            echo "Edge slowing down the process" 
+                            echo "Edge slowing down the process"
                             sleep(time: 3, unit: 'SECONDS')
-                            echo "Chrome slowed down the process" 
+                            echo "Chrome slowed down the process"
                         }
                     }
                 )
@@ -110,13 +110,12 @@ pipeline {
             agent{
                 label 'docker'
             }
-
-            steps{
+            steps {
                 dir("target"){
                     deleteDir();
                 }
 
-                sh "ls -alh" 
+                sh "ls -alh"
                 unstash 'binary'
                 sh 'ls -alh target/'
 
@@ -134,6 +133,8 @@ pipeline {
             steps {
                 echo "Deploying..."
                 sleep(time: 2, unit: 'SECONDS')
+                echo "Removing docker image"
+                sh ("docker rmi -f toulouseJam/spring-petclinic:${env.BUILD_NUMBER}")
             }
         }
     }
