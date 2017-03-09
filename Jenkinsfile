@@ -71,6 +71,15 @@ pipeline {
             }
         }
 
+        // Clearing workspace....
+        stage ('Clearing'){
+            steps{
+                dir("target"){
+                    deleteDir();
+                }
+            }
+        }
+
         // Unstash'....
         stage ('Staging'){
             steps{
