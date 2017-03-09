@@ -124,9 +124,9 @@ pipeline {
 
                 echo "Deploying..."
                 sleep(time: 2, unit: 'SECONDS')
-                echo "Removing docker image"
-                sh ("docker run -d toulouse-jam/spring-petclinic")
+                sh ("docker run -d toulouse-jam/spring-petclinic:${env.BUILD_NUMBER}")
                 input "t'as fini ?"
+                echo "Removing docker image"
                 sh ("docker rmi -f toulouse-jam/spring-petclinic:${env.BUILD_NUMBER}")
             }
         }
